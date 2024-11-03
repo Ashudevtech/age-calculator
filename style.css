@@ -1,153 +1,133 @@
-body {
+*,
+*:before,
+*:after {
+    padding: 0;
     margin: 0;
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    justify-content: center;
-    background: url("https://images.unsplash.com/photo-1499002238440-d264edd596ec?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80") no-repeat center center fixed;
-    background-size: cover;
-    color: white;
-    text-align: center;
+    box-sizing: border-box;
+}
+body {
+    background-color: #0a6cf1;
+    background-image: radial-gradient(#fff, transparent), radial-gradient(#fff, transparent);
+    background-position: 0 0, 50px 50px;
+    background-size: 10px 10px;
+    animation: stars 5s linear infinite;
 }
 
-h2 {
-    margin-bottom: 20px;
-    font-size: 36px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+@keyframes stars {
+    from { background-position: 0 0, 50px 50px; }
+    to { background-position: -50px -50px, 0 0; }
 }
 
-.greeting {
-    font-size: 48px; /* Increased size for emphasis */
-    margin-bottom: 20px;
-    padding: 15px 30px;
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s;
+.container {
+    width: 40%;
+    min-width: 450px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    padding: 50px 30px;
 }
 
-.greeting:hover {
-    transform: scale(1.05); /* Slight zoom on hover */
-}
-
-.clock-styles {
-    margin-bottom: 20px;
-}
-
-button {
-    padding: 10px 20px;
-    margin: 5px;
-    background-color: #3498db; /* Bright blue */
-    color: white;
+.container * {
+    font-family: "Poppins", sans-serif;
     border: none;
+    outline: none;
+}
+
+.inputs-wrapper {
+    background-color: #080808;
+    padding: 30px 25px;
+    border-radius: 8px;
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+    margin-bottom: 50px;
+}
+
+input,
+button {
+    height: 50px;
+    background-color: #ffffff;
+    color: #080808;
+    font-weight: 500;
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s, transform 0.3s;
+    transition: all 0.3s ease;
+}
+
+/* Glowing effect for input on focus */
+input {
+    width: 60%;
+    padding: 0 20px;
+    font-size: 14px;
+}
+
+input:focus {
+    border: 2px solid #00ff99;
+    box-shadow: 0 0 10px #00ff99;
+    transition: 0.3s;
+}
+
+/* Button animation and hover effect */
+button {
+    width: 30%;
+    float: right;
 }
 
 button:hover {
-    background-color: #2980b9; /* Darker blue on hover */
+    background-color: #ff9900;
+    color: #fff;
     transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-.clock {
-    margin: 20px;
-    font-size: 40px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-}
-
-#digitalClock {
+/* Result divs card flip effect */
+.outputs-wrapper {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    justify-content: space-between;
 }
 
-#hour, #minutes, #seconds, #ampm {
-    background-color: rgba(0, 0, 0, 0.9);
-    border-radius: 10px;
-    padding: 20px;
-    margin: 5px;
-    font-size: 32px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
-}
-
-.analog-clock {
-    position: relative;
-    width: 250px;
-    height: 250px;
-    border: 10px solid white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.8); /* Darker analog clock background */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-}
-
-.hand {
-    position: absolute;
-    background: white;
-    transform-origin: bottom;
-    bottom: 50%;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: transform 0.5s ease;
-}
-
-.hour-hand {
-    width: 8px;
-    height: 70px;
-    border-radius: 6px;
-    background-color: orange;
-}
-
-.minute-hand {
-    width: 6px;
-    height: 90px;
-    border-radius: 4px;
-    background-color: green;
-}
-
-.second-hand {
-    width: 4px;
+.outputs-wrapper div {
     height: 100px;
-    background: red;
-    border-radius: 2px;
+    width: 100px;
+    background-color: #080808;
+    border-radius: 5px;
+    color: #ffffff;
+    display: grid;
+    place-items: center;
+    padding: 20px 0;
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
 }
 
-.center-circle {
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background: white;
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+.outputs-wrapper div:hover {
+    transform: rotateY(180deg);
 }
 
-.futuristic-time {
-    font-size: 48px;
-    color: white;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+span,
+p {
+    backface-visibility: hidden;
 }
 
-#countdownDisplay, .weather, #timeFactDisplay {
-    font-size: 18px;
-    margin: 10px 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+/* Animating the result values */
+span {
+    font-size: 30px;
+    font-weight: 500;
+    animation: countUp 0.5s ease-in-out;
 }
 
-#countdownDisplay {
-    font-size: 24px; /* Slightly larger for emphasis */
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+p {
+    font-size: 14px;
+    color: #707070;
+    font-weight: 400;
 }
